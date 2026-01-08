@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إستفسار - VM Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+         <meta name="description" content="متجر VM Store - وجهتك الأولى لأحدث صيحات الملابس الشبابية في الجزائر. جودة عالية وتوصيل سريع.">
+
+<meta name="keywords" content="ملابس, Vigoss MOD , فاست, ملابس رجالية, الجزائر, تسوق اونلاين, VM Store, موضة 2026">
+
+<meta name="author" content="VM Store">
+
+<meta property="og:title" content="VM Store | متجر الملابس الأنيقة">
+<meta property="og:description" content="تسوق أحدث التشكيلات من التيشيرتات والملابس العصرية بأسعار تنافسية.">
+<meta property="og:image" content="VM/IMG-20251123-WA0007.svg">
+
+    <style>
+        /* --- 1. إعدادات الصفحة --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: #3ca2fa; /* نفس أزرق الصفحة الرئيسية */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* ملء الشاشة */
+            overflow: hidden;
+        }
+
+        /* --- 2. كود شعار العودة (نفس المستخدم سابقاً) --- */
+        .home-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .home-logo img {
+            width: 70px;
+            transition: 0.3s;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .home-logo img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- 3. بطاقة التواصل --- */
+        .contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            animation: fadeIn 2s ease; /* حركة ظهور ناعمة */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* --- 4. رقم الهاتف --- */
+        .phone-box {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px dashed #3ca2fa;
+        }
+
+        .phone-number {
+            display: block;
+            font-size: 22px;
+            font-weight: bold;
+            color: #3ca2fa;
+            text-decoration: none;
+            direction: ltr; /* ليظهر الرقم بشكل صحيح */
+        }
+
+        /* --- 5. أزرار التواصل الاجتماعي --- */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        /* ألوان المنصات */
+        .whatsapp { background-color: #25D366; }
+        .instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+        .facebook { background-color: #1877F2; }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1); /* تأثير الطفو عند الماوس */
+        }
+
+        /* حركة الظهور */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="home-logo">
+        <img src="VM/IMG-20251123-WA0007.svg" alt="العودة">
+    </a>
+
+    <div class="contact-card">
+        <h1>تواصل معنا 📞</h1>
+        <p class="subtitle">نحن هنا للإجابة على جميع استفساراتك</p>
+
+        <div class="phone-box">
+            <span>اتصل بنا مباشرة:</span>
+            <a href="tel:+213674224165" class="phone-number">+213 674224165</a>
+        </div>
+
+        <p style="margin-bottom: 15px; font-weight: bold;">أو تابعنا عبر:</p>
+
+        <div class="social-links">
+            
+            <a href="https://wa.me/213674224165" target="_blank" class="social-btn whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+            <a href="https://www.instagram.com/vigossmod/?hl=fr" target="_blank" class="social-btn instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://www.facebook.com/profile.php?id=61586002081829" target="_blank" class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>

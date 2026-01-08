@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب - VM Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+        <meta name="description" content="متجر VM Store - وجهتك الأولى لأحدث صيحات الملابس الشبابية في الجزائر. جودة عالية وتوصيل سريع.">
+
+<meta name="keywords" content="ملابس, Vigoss MOD , فاست, ملابس رجالية, الجزائر, تسوق اونلاين, VM Store, موضة 2026">
+
+<meta name="author" content="VM Store">
+
+<meta property="og:title" content="VM Store | متجر الملابس الأنيقة">
+<meta property="og:description" content="تسوق أحدث التشكيلات من التيشيرتات والملابس العصرية بأسعار تنافسية.">
+<meta property="og:image" content="VM/IMG-20251123-WA0007.svg">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // تم وضع مفتاحك الخاص هنا
+          emailjs.init("D-jKRHCM_bRNa3HGj");
+       })();
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #3ca2fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .order-summary {
+            flex: 1;
+            background: #f4f8fb;
+            padding: 30px;
+            min-width: 300px;
+            border-left: 2px solid #eee;
+        }
+
+        .order-summary h2 { color: #3ca2fa; margin-top: 0; }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .total-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+            margin-top: 20px;
+            text-align: center;
+            border-top: 2px dashed #ccc;
+            padding-top: 15px;
+        }
+
+        .form-section {
+            flex: 1.5;
+            padding: 40px;
+            min-width: 300px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .confirm-btn {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            transition: transform 0.3s;
+        }
+
+        /* تنسيق النافذة المنبثقة (Success Modal) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* تقليل الحواف الخارجية */
+    }
+
+    .container {
+        flex-direction: column-reverse; /* وضع الملخص في الأسفل والمعلومات في الأعلى */
+        width: 100%;
+        margin: 0;
+        border-radius: 10px; /* تقليل الزوايا لتوفير مساحة */
+    }
+
+    .form-section {
+        padding: 45px; /* تقليل الحواف الداخلية */
+        min-width: unset; /* إلغاء الحد الأدنى للعرض */
+    }
+
+    .order-summary {
+        padding: 20px;
+        min-width: unset;
+        border-left: none;
+        border-bottom: 2px solid #eee;
+    }
+
+    .form-group div {
+        flex-direction: column; /* جعل الولاية والبلدية فوق بعضهما في الموبايل */
+        gap: 0;
+    }
+
+    input {
+        font-size: 14px; /* تصغير الخط ليتناسب مع الشاشة */
+        padding: 10px;
+    }
+
+    .confirm-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-section">
+            <h2 style="text-align: center; margin-bottom: 30px;">معلومات التوصيل 🚚</h2>
+            <form id="orderForm" onsubmit="sendOrder(event)">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="fullName" placeholder="محمد أحمد..." required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="phone" placeholder="06XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <div style="display: flex; gap: 10px;">
+                        <div style="flex: 1;">
+                            <label>الولاية</label>
+                            <input type="text" id="wilaya" placeholder="غرداية..." required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label>البلدية</label>
+                            <input type="text" id="baladiya" placeholder="القرارة..." required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="confirm-btn">تأكيد الطلب الآن ✅</button>
+            </form>
+            <br>
+            <a href="الطلبات.html" style="text-decoration: none; color: #777; display: block; text-align: center;">عودة للسلة</a>
+        </div>
+
+        <div class="order-summary">
+            <h2>ملخص الطلب 🛒</h2>
+            <div id="summaryItems"></div>
+            <div class="total-price" id="totalPriceDisplay">المجموع: 0 د.ج</div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 450px;">
+            <div style="font-size: 60px; color: #27ae60; margin-bottom: 20px;">✅</div>
+            <h2 style="color: #2c3e50; margin-bottom: 15px;">تم استلام طلبك بنجاح!</h2>
+            <p style="color: #7f8c8d; line-height: 1.6; margin-bottom: 25px;">
+                طلبك الآن **قيد المراجعة**. سنتواصل معك قريباً لتأكيد الطلب.
+            </p>
+            <button onclick="goToHome()" class="confirm-btn" style="background: #3ca2fa;">العودة للرئيسية</button>
+        </div>
+    </div>
+
+    <script>
+        let orderDetailsText = ""; 
+        let total = 0;
+
+        window.onload = function() {
+            // جلب الاسم
+            let savedName = localStorage.getItem('customerName');
+            if (savedName) document.getElementById('fullName').value = savedName;
+
+            // جلب السلة
+            let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+            let summaryDiv = document.getElementById('summaryItems');
+            
+            if (cart.length === 0) {
+                alert("سلتك فارغة!");
+                window.location.href = 'الملابس.html';
+                return;
+            }
+
+cart.forEach(item => {
+    let priceNum = parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
+    total += priceNum;
+
+    // عرض التفاصيل في الملخص
+    summaryDiv.innerHTML += `
+        <div class="summary-item">
+            <span>${item.name} (مقاس: ${item.size} - لون: ${item.color})</span>
+            <span>${item.price}</span>
+        </div>
+    `;
+    
+    // إضافة التفاصيل لنص الإيميل لتعرف ماذا تشحن للزبون
+    orderDetailsText += `- ${item.name} | المقاس: ${item.size} | اللون: ${item.color} | السعر: ${item.price}\n`;
+});
+            document.getElementById('totalPriceDisplay').innerText = "المجموع: " + total + " د.ج";
+        };
+
+        function sendOrder(e) {
+            e.preventDefault();
+            let btn = document.querySelector('.confirm-btn');
+            btn.innerText = "جاري إرسال طلبك...";
+            btn.disabled = true;
+
+            var templateParams = {
+                to_name: "مدير المتجر",
+                from_name: document.getElementById('fullName').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('wilaya').value + " - " + document.getElementById('baladiya').value,
+                order_details: orderDetailsText,
+                total_price: total + " د.ج"
+            };
+
+            // تأكد من وضع الـ IDs الخاصة بك هنا من موقع EmailJS
+            emailjs.send('service_0drokf7', 'template_zg2ehwc', templateParams)
+                .then(function(response) {
+                    document.getElementById('successModal').style.display = 'flex';
+                    localStorage.removeItem('myCart');
+                }, function(error) {
+                    alert("خطأ: " + JSON.stringify(error));
+                    btn.innerText = "تأكيد الطلب الآن ✅";
+                    btn.disabled = false;
+                });
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

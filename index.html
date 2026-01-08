@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM Store | الصفحة الرئيسية - أحدث الملابس الشبابية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="متجر VM Store - وجهتك الأولى لأحدث صيحات الملابس الشبابية في الجزائر. جودة عالية وتوصيل سريع.">
+
+<meta name="keywords" content="ملابس, Vigoss MOD , فاست, ملابس رجالية, الجزائر, تسوق اونلاين, VM Store, موضة 2026">
+
+<meta name="author" content="VM Store">
+
+<meta property="og:title" content="VM Store | متجر الملابس الأنيقة">
+<meta property="og:description" content="تسوق أحدث التشكيلات من التيشيرتات والملابس العصرية بأسعار تنافسية.">
+<meta property="og:image" content="VM/IMG-20251123-WA0007.svg">
+    
+    <style>
+        /* --- 1. إعدادات عامة --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif; /* الخط العربي */
+        }
+/* خلفية معتمة تغطي الشاشة */
+.modal-overlay {
+    display: none; /* مخفي افتراضياً */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px); /* تأثير ضبابي للخلفية */
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* صندوق النافذة */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    animation: fadeInScale 0.3s ease-out;
+}
+
+.modal-content h3 { color: #3ca2fa; margin-bottom: 10px; }
+.modal-content p { color: #666; margin-bottom: 20px; }
+
+/* حقل الإدخال */
+#userNameInput {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+}
+
+#userNameInput:focus { border-color: #3ca2fa; }
+
+/* الأزرار */
+.modal-buttons { display: flex; gap: 10px; }
+
+.save-btn {
+    flex: 2;
+    background: #3ca2fa;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.close-btn {
+    flex: 1;
+    background: #eee;
+    color: #333;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* حركة الظهور */
+@keyframes fadeInScale {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+        body {
+            background-color: #3ca2fa; /* لون الخلفية الأزرق كما في الصورة */
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. تصميم القائمة العلوية (Navbar) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+         /* تنسيق الحاوية التي تجمع الشعار والاسم */
+.brand-container {
+    display: flex;             /* لترتيب الشعار والاسم بجانب بعض */
+    align-items: center;       /* محاذاة عمودية في المنتصف */
+    gap: 15px;                 /* مسافة بين الصورة والنص */
+    text-decoration: none;     /* إزالة الخط من الرابط */
+    
+    /* هام: جعلنا الوضع نسبي لكي يحترم مساحة القائمة ولا يتداخل معها */
+    position: relative; 
+    z-index: 10;
+}
+
+
+/* تنسيق الصورة */
+.logo-img {
+    width: 60px;               /* حجم الشعار */
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    transition: transform 0.3s;
+}
+
+/* تنسيق اسم المتجر الفخم */
+.brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    
+    /* 1. الخلفية الذهبية */
+    background: linear-gradient(to bottom, #FFD700, #FDB931);
+    
+    /* 2. قص الخلفية (نكتب الاثنين لضمان العمل واختفاء التنبيه) */
+    -webkit-background-clip: text; /* لمتصفحات كروم وسفاري */
+    background-clip: text;         /* الصيغة القياسية لباقي المتصفحات */
+    
+    /* 3. جعل النص شفافاً لتظهر الخلفية من خلاله */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+   
+
+/* حركة عند مرور الماوس */
+.brand-container:hover .logo-img {
+    transform: scale(1.1) rotate(-5deg);
+}
+        .logo img {
+            width: 70px; /* حجم الشعار */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700; /* لون ذهبي عند المرور */
+        }
+
+        .sign-in-btn {
+            background-color: #ff7e5f; /* اللون البرتقالي المائل للوردي */
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- 3. قسم الهيرو (الرئيسي) --- */
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            min-height: 80vh; /* ارتفاع مناسب للشاشة */
+            flex-wrap: wrap; /* لضمان التجاوب في الموبايل */
+        }
+
+        /* الجزء النصي (يسار) */
+        .content-side {
+            flex: 1;
+            max-width: 600px;
+            padding-right: 20px;
+        }
+
+        .main-title {
+            font-family: 'Poppins', sans-serif; /* خط إنجليزي عريض */
+            font-size: 45px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: right; /* محاذاة النص العربي لليمين */
+            direction: rtl;    /* اتجاه النص العربي */
+            opacity: 0.9;
+        }
+
+        /* شريط البحث */
+        .search-box {
+            background: white;
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+            width: 100%;
+            max-width: 400px;
+            align-items: center;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            flex: 1;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* الجزء الصوري (يمين) */
+        .image-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 30px; /* الحواف الدائرية للصورة */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background-color: #f0f0f0; /* لون خلفية خفيف للصورة إذا تأخرت في التحميل */
+        }
+
+        /* شعار صغير فوق الصورة */
+        .image-badge {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 50px;
+        }
+
+@media (max-width: 768px) {
+    
+    /* 1. إصلاح تداخل القائمة العلوية */
+    header {
+        flex-direction: column; /* يرتب الشعار في الأعلى والقائمة في الأسفل */
+        gap: 15px;              /* مسافة بين الشعار والقائمة */
+        padding: 15px;          /* تقليل الحواف */
+    }
+
+    nav ul {
+        flex-wrap: wrap;        /* يسمح للروابط بالنزول لسطر ثاني إذا لم يكف المكان */
+        justify-content: center; /* توسيط الروابط */
+        gap: 10px;              /* تقليل المسافة بين الكلمات */
+        padding: 0;
+    }
+
+    nav a {
+        font-size: 14px;        /* تصغير خط القائمة قليلاً ليتناسب مع الشاشة */
+        padding: 5px;           /* مساحة للمس */
+    }
+
+    /* 2. إصلاح القسم الرئيسي (النصوص والصور) */
+    .hero-section {
+        flex-direction: column-reverse; /* الصورة أولاً ثم النص تحتها */
+        padding: 20px 15px;             /* هوامش جانبية صغيرة */
+        text-align: center;             /* توسيط كل المحتوى */
+        gap: 30px;
+    }
+
+    /* 3. ضبط حجم النصوص الكبيرة */
+    .content-side {
+        padding-right: 0;      /* إلغاء الحافة اليمنى لأننا في وضع التوسيط */
+    }
+
+    .main-title {
+        font-size: 26px;       /* تصغير العنوان الرئيسي ليناسب الموبايل */
+        line-height: 1.3;
+        margin-top: 10px;
+    }
+
+    .description {
+        font-size: 14px;       /* تصغير الوصف */
+        text-align: center;    /* توسيط النص العربي */
+        line-height: 1.6;
+    }
+
+    /* 4. إصلاح شريط البحث */
+    .search-box {
+        width: 100%;           /* العرض كامل */
+        margin: 0 auto;        /* توسيط الشريط */
+    }
+
+    .search-btn {
+        padding: 10px 15px;    /* تصغير الزر قليلاً */
+    }
+    
+    /* 5. إخفاء اسم المتجر الطويل في الموبايل لتقليل الزحمة (اختياري) */
+    /* يمكنك حذف هذا الجزء إذا أردت بقاء الاسم */
+    .brand-name {
+        display: none; 
+    }
+}
+        
+    </style>
+</head>
+<body>
+
+    <header>
+             <a href="index.html" class="brand-container">
+               <img src="VM/IMG-20251123-WA0007.svg" alt="شعار VM" class="logo-img">
+               <span class="brand-name">Vigoss Mod TICHO</span>
+             </a>
+        
+        <nav>
+            <ul>
+<div id="user-area">
+<button onclick="askForName()" class="sign-in-btn">تسجيل الاسم</button>
+</div>
+
+<script>
+   
+// فتح النافذة
+function askForName() {
+    document.getElementById('nameModal').style.display = 'flex';
+    document.getElementById('userNameInput').focus();
+}
+
+// إغلاق النافذة
+function closeModal() {
+    document.getElementById('nameModal').style.display = 'none';
+}
+
+// حفظ الاسم وتحديث الواجهة
+function saveNameCustom() {
+    let name = document.getElementById('userNameInput').value;
+    if (name.trim() !== "") {
+        localStorage.setItem('customerName', name);
+        closeModal();
+        displayUser(); // الدالة التي تعرض الاسم في الـ Header
+        if(typeof showToast === "function") showToast(`أهلاً بك يا ${name}`);
+    } else {
+        alert("يرجى كتابة الاسم أولاً");
+    }
+}
+
+// إغلاق النافذة عند الضغط خارج الصندوق الأبيض
+window.onclick = function(event) {
+    let modal = document.getElementById('nameModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+    function displayUser() {
+        let savedName = localStorage.getItem('customerName');
+        if (savedName) {
+            document.getElementById('user-area').innerHTML = `
+                <div style="color:white; font-weight:bold; display:flex; align-items:center; gap:10px;">
+                    <span>أهلاً، ${savedName} ✨</span>
+                    <button onclick="logoutUser()" style="background:none; border:none; color:#ffd700; cursor:pointer; font-size:12px;">(تغيير)</button>
+                </div>
+            `;
+        }
+    }
+
+    function logoutUser() {
+        localStorage.removeItem('customerName');
+        location.reload();
+    }
+
+    // تشغيل الدالة عند تحميل الصفحة
+    window.onload = displayUser;
+</script>
+
+<div id="auth-container">
+    <div class="g_id_signin" data-type="standard"></div>
+</div>
+                <li><a href="الإستفسار.html">الاستفسار</a></li>
+                <li><a href="الطلبات.html">الطلبات</a></li> 
+                <li><a href="الملابس.html">الملابس</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        
+        <div class="content-side">
+            <h1 class="main-title">The Best Clothing Store in Ghardaia</h1>
+            
+            <p class="description">
+                متجر متخصص في الملابس الرجالية العصرية 👔، نقدم تصاميم أنيقة بجودة عالية تناسب جميع الأذواق والمناسبات.
+                نحرص على الجمع بين الأناقة 🔥، الراحة ✨، والأسعار المناسبة لنمنحك تجربة تسوق مميزة تعكس أسلوبك وثقتك.
+            </p>
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="ابحث عن (ملابس، سلة، تواصل)...">
+    
+    <button class="search-btn" onclick="smartSearch()">SEARCH</button>
+</div>
+        </div>
+
+        <div class="image-side">
+            <img src="VM/IMG_20251110_124223.png" alt="Men Clothing" class="hero-image">
+            
+            <img src="VM/IMG-20251123-WA0007.svg" alt="Badge" class="image-badge">
+        </div>
+
+    </section>
+     <script>
+      function smartSearch() {
+        // 1. جلب النص الذي كتبه المستخدم وتحويله لحروف صغيرة (لتسهيل المقارنة)
+        var input = document.getElementById("searchInput").value.toLowerCase();
+
+        // 2. التحقق من الكلمات المفتاحية والتوجيه
+        if (input.includes("ملابس") || input.includes("قميص") || input.includes("تيشرت") || input.includes("بنطلون") || input.includes("تريكو")  ) {
+            window.location.href = "الملابس.html"; // يذهب لصفحة الملابس
+        
+        } else if (input.includes("سلة") || input.includes("طلب") || input.includes("cart")) {
+            window.location.href = "الطلبات.html"; // يذهب للسلة
+        
+        } else if (input.includes("تواصل") || input.includes("هاتف") || input.includes("contact")) {
+            window.location.href = "الإستفسار.html"; // يذهب لصفحة الاتصال
+        
+        } else if (input === "") {
+            alert("الرجاء كتابة شيء للبحث عنه!"); // تنبيه إذا كانت الخانة فارغة
+        
+        } else {
+            alert("عذراً، لم نعثر على نتائج لـ: " + input + "\nجرب البحث عن: ملابس، سلة، تواصل");
+        }
+    }
+
+    // إضافة ميزة لطيفة: عند ضغط زر Enter في لوحة المفاتيح يتم البحث أيضاً
+    document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            smartSearch();
+        }
+    });
+      </script> 
+<div id="nameModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>مرحباً بك في VM Store ✨</h3>
+        <p>يسعدنا التعرف عليك، يرجى إدخال اسمك:</p>
+        <input type="text" id="userNameInput" placeholder="اكتب اسمك هنا...">
+        <div class="modal-buttons">
+            <button onclick="saveNameCustom()" class="save-btn">حفظ الاسم</button>
+            <button onclick="closeModal()" class="close-btn">إغلاق</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

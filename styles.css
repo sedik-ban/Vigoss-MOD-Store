@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Poppins",serif;
+ }
+body {
+    background-color: #3d97f0;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:  auto;
+    background-color: #3d79f0;
+}
+.navigation ul{
+    display: flex;
+    list-style-type: none;
+    gap: 0.5rem;
+    font-size: 20px;
+}
+.navigation a {
+    color: #eeeeeeee;
+    text-decoration: none;
+    padding: 1px 10px;
+    border-radius: 15px;
+}
+
+.navigation a:hover {
+    background-color: #e4b849;
+}
+.btn {
+    background-color: #df6971;
+    border-radius: 15px;
+    padding: 0px 10px;
+    color: rgb(255, 231, 200);
+    border: none;
+}
+
+.btn :hover {
+    background-color: #f2858c;
+}
+hr{
+    opacity: 10%;
+}
+
+.b{
+   margin: auto;
+   display: block;
+   width: 10px; 
+   bottom: 10px;
+}
+
+.Landing-pege {
+    background-color: #3d79f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: azure;
+    border-radius: 0 0 50px 50px;
+    width: 50% ;
+
+}
+.Landing-pege-serch input {
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    height: 30px;
+    padding-left: 10px;
+    padding-right:  10px;
+    position: absolute;
+    bottom: 20%;
+    top: 70%;
+}
+.Landing-pege-serch button {
+    position: absolute;
+    left: 200px;
+    height: 30px;
+    bottom: 20%;
+    top: 70%;
+    background-color: #3d79f0;
+}
+
+.Landing-pege-image-container img {
+    position: absolute;left: 60%; top: 30%;
+    border-radius: 20px;
+    width: 500px;
+}
+.Landing-pege-left-section{
+    width: 600px
+}
+.aboutMe {
+    display: contents;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6rem ;
+    max-width: 1200px;
+    gap: 10rem;
+} 
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.textTitel {
+    display: flex;
+    align-items: center;
+    gap: 50rem ;
+    font-size: 3rem;
+}
+
+.aboutName {
+    color: #eeeeee;
+}
+
+
+.aboutTitel {
+    color: #00adb5;
+}
+
+/* تنسيق رابط الشعار */
+.store-logo {
+    position: absolute; /* لتثبيته في الزاوية */
+    top: 20px;          /* المسافة من الأعلى */
+    left: 20px;         /* المسافة من اليسار (أو اجعلها right لليمين) */
+    z-index: 1000;      /* لضمان ظهوره فوق كل العناصر */
+    display: inline-block; /* مهم لعمل التحريك */
+}
+
+/* تنسيق الصورة نفسها */
+.VMmod img {
+    width: 80px;       /* حجم الشعار (عدله كما تحب) */
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease; /* نعومة الحركة */
+    cursor: pointer;   /* تغيير شكل الماوس ليد */
+}
+
+/* الحركة عند مرور الماوس (Hover) */
+.VMmod img:hover {
+    transform: scale(1.1); /* تكبير الشعار قليلاً */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)); /* إضافة توهج خلفه */
+    }
