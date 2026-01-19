@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسوق الملابس - تشكيلة التيشيرتات والجاكيتات | VM Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-        <meta name="description" content="متجر VM Store - وجهتك الأولى لأحدث صيحات الملابس الشبابية في الجزائر. جودة عالية وتوصيل سريع.">
+    <meta name="description" content="متجر VM Store - وجهتك الأولى لأحدث صيحات الملابس الشبابية في الجزائر. جودة عالية وتوصيل سريع.">
+    <meta name="keywords" content="ملابس, Vigoss MOD , فاست, ملابس رجالية, الجزائر, تسوق اونلاين, VM Store, موضة 2026">
+    <meta name="author" content="VM Store">
 
-<meta name="keywords" content="ملابس, Vigoss MOD , فاست, ملابس رجالية, الجزائر, تسوق اونلاين, VM Store, موضة 2026">
-
-<meta name="author" content="VM Store">
-
-<meta property="og:title" content="VM Store | متجر الملابس الأنيقة">
-<meta property="og:description" content="تسوق أحدث التشكيلات من التيشيرتات والملابس العصرية بأسعار تنافسية.">
-<meta property="og:image" content="VM/IMG-20251123-WA0007.svg">
+    <meta property="og:title" content="VM Store | متجر الملابس الأنيقة">
+    <meta property="og:description" content="تسوق أحدث التشكيلات من التيشيرتات والملابس العصرية بأسعار تنافسية.">
+    <meta property="og:image" content="VM/IMG-20251123-WA0007.svg">
     
     <style>
         /* التنسيقات العامة */
@@ -23,6 +21,7 @@
             margin: 0;
             padding: 20px;
             color: white;
+            padding-bottom: 100px;
         }
 
         /* شعار العودة */
@@ -60,95 +59,135 @@
             transition: 0.3s;
             display: flex;
             flex-direction: column;
-            padding-bottom: 20px;
             color: #333;
+            height: 100%;
         }
         .product-card:hover { transform: translateY(-10px); }
 
-/* تنسيق موحد لكل صور المنتجات */
-.product-card img {
-    width: 100%;        /* تأخذ عرض البطاقة بالكامل */
-    height: 300px;      /* نحدد طولاً ثابتاً لجميع الصور لتوحيد الشكل */
-    object-fit: contain; /* هذا السطر سحري: يمنع تمدد أو تشوه الصورة ويجعلها تظهر بالكامل داخل الإطار */
-    background-color: #f9f9f9; /* خلفية خفيفة جداً لملء الفراغات إذا كانت الصورة صغيرة */
-    border-bottom: 1px solid #eee;
-    transition: 0.3s;
-}
+        /* السلايدر والصور */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: #f9f9f9;
+        }
 
-/* تصغير الصور في الهواتف لكي لا تأخذ مساحة كبيرة */
-@media (max-width: 480px) {
-    .product-card img {
-        height: 220px; /* طول أصغر يتناسب مع شاشات الجوال */
-    }
-}
+        .slider-img, .product-card > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
 
-        .product-info { padding: 15px; text-align: center; }
+        .slider-img.active, .product-card > img:not(.slider-img) {
+            opacity: 1;
+            position: relative;
+        }
+
+        .product-info { padding: 15px; text-align: center; flex-grow: 1; }
         .product-title { font-size: 20px; font-weight: bold; margin: 5px 0; }
         .product-price { color: #27ae60; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
 
-        /* أزرار المقاسات */
         .selector-label { font-size: 14px; font-weight: bold; margin: 10px 0 5px; color: #666; }
-        .options-group { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; padding: 0 10px; }
+        .options-group { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
         
         .size-btn {
-            width: 35px; height: 35px; border: 1px solid #ddd; background: white;
+            width: 40px; height: 35px; border: 1px solid #ddd; background: white;
             border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;
         }
         .size-btn.active { background: #3ca2fa; color: white; border-color: #3ca2fa; }
 
-        /* أزرار الألوان */
         .color-btn {
-            width: 25px; height: 25px; border-radius: 50%; border: 2px solid #eee;
+            width: 30px; height: 30px; border-radius: 50%; border: 2px solid #eee;
             cursor: pointer; transition: 0.2s;
         }
-        .color-btn.active { border-color: #3ca2fa; transform: scale(1.2); }
+        .color-btn.active { border-color: #3ca2fa; transform: scale(1.2); box-shadow: 0 0 5px rgba(0,0,0,0.2); }
 
-        /* الزر الفخم */
         .luxury-btn {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white; border: none; padding: 12px; width: 85%;
-            margin: 0 auto; border-radius: 50px; font-weight: bold; cursor: pointer;
+            color: white; border: none; padding: 14px; width: 90%;
+            margin: 10px auto; border-radius: 50px; font-weight: bold; cursor: pointer;
             box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); transition: 0.3s;
         }
         .luxury-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
 
-        /* التوست */
-#toast {
-    visibility: hidden;
-    min-width: 250px;
-    text-align: center;
-    border-radius: 50px; /* شكل كبسولة عصري */
-    padding: 16px;
+        /* التوست (الإشعار) */
+        #toast {
+            visibility: hidden;
+            min-width: 280px;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: 0.5s;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        .cart-footer {
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            z-index: 10;
+        }
+    /* تنسيق زر السلة العائم */
+.floating-cart {
     position: fixed;
-    z-index: 9999;
-    left: 50%;
-    transform: translateX(-50%); /* التوسيط في منتصف الشاشة */
     bottom: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transition: 0.5s;
+    right: 30px;
+    background: #292447;
+    color: #d6c41f;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 3000;
+    transition: all 0.3s ease;
+    border: 2px solid #d6c41f;
 }
 
-#toast.show {
-    visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+.floating-cart:hover {
+    transform: scale(1.1) rotate(-10deg);
+    background: #3ca2fa;
+    color: white;
+    border-color: white;
 }
 
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-}
+/* لإخفاء الزر القديم في الأسفل */
+.cart-footer { display: none; }
 
-@keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+/* للموبايل: تصغير الزر قليلاً */
+@media (max-width: 480px) {
+    .floating-cart {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
 }
     </style>
 </head>
 <body>
-      <div id="toast"></div>
-    <div id="toast">🛒 تمت إضافة المنتج للسلة!</div>
+    <div id="toast"></div>
 
     <a href="index.html" class="home-logo">
         <img src="VM/IMG-20251123-WA0007.svg" alt="الرئيسية">
@@ -162,7 +201,6 @@
             <div class="product-info">
                 <div class="product-title">تيشرت كلاسيك</div>
                 <div class="product-price">2000.00 DA</div>
-                
                 <div class="selector-label">المقاس:</div>
                 <div class="options-group" id="sizes-p1">
                     <button class="size-btn" onclick="selectOption('p1', 'size', 'S', this)">S</button>
@@ -170,15 +208,13 @@
                     <button class="size-btn" onclick="selectOption('p1', 'size', 'L', this)">L</button>
                     <button class="size-btn" onclick="selectOption('p1', 'size', 'XL', this)">XL</button>
                 </div>
-
                 <div class="selector-label">اللون:</div>
                 <div class="options-group" id="colors-p1">
                     <button class="color-btn" style="background: black;" onclick="selectOption('p1', 'color', 'أسود', this)"></button>
                     <button class="color-btn" style="background: white;" onclick="selectOption('p1', 'color', 'أبيض', this)"></button>
                     <button class="color-btn" style="background: #1a5fb4;" onclick="selectOption('p1', 'color', 'أزرق', this)"></button>
                 </div>
-
-<button class="luxury-btn" onclick="addToCart('p1', 'تيشرت كلاسيك', '2000.00 DA', 'VM/IMG_20251110_123023.png')">شراء الآن</button>
+                <button class="luxury-btn" onclick="addToCart('p1', 'تيشرت كلاسيك', '2000.00 DA', 'VM/IMG_20251110_123023.png')">شراء الآن</button>
             </div>
         </div>
 
@@ -187,92 +223,205 @@
             <div class="product-info">
                 <div class="product-title">جاكيت فاخر</div>
                 <div class="product-price">4250.00 DA</div>
-                
                 <div class="selector-label">المقاس:</div>
                 <div class="options-group" id="sizes-p2">
                     <button class="size-btn" onclick="selectOption('p2', 'size', 'M', this)">M</button>
                     <button class="size-btn" onclick="selectOption('p2', 'size', 'L', this)">L</button>
                     <button class="size-btn" onclick="selectOption('p2', 'size', 'XL', this)">XL</button>
                 </div>
-
                 <div class="selector-label">اللون:</div>
                 <div class="options-group" id="colors-p2">
                     <button class="color-btn" style="background: #4e4e4e;" onclick="selectOption('p2', 'color', 'رمادي', this)"></button>
                     <button class="color-btn" style="background: black;" onclick="selectOption('p2', 'color', 'أسود', this)"></button>
                 </div>
-
-<button class="luxury-btn" onclick="addToCart('p2', 'جاكيت فاخر', '4250.00 DA', 'VM/IMG_20251108_122713.png')">شراء الآن</button>
+                <button class="luxury-btn" onclick="addToCart('p2', 'جاكيت فاخر', '4250.00 DA', 'VM/IMG_20251108_122713.png')">شراء الآن</button>
             </div>
         </div>
-    </div>        
-                 <div style="text-align: center; margin-top: 50px;">
-        <a href="الطلبات.html" style="background: #292447; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold;">
+
+        <div class="product-card">
+            <img src="VM/IMG_20251108_113209.png" alt="سروال">
+            <div class="product-info">
+                <div class="product-title">سروال</div>
+                <div class="product-price">2000.00 DA</div>
+                <div class="selector-label">المقاس:</div>
+                <div class="options-group" id="sizes-p3">
+                    <button class="size-btn" onclick="selectOption('p3', 'size', 'S', this)">S</button>
+                    <button class="size-btn" onclick="selectOption('p3', 'size', 'M', this)">M</button>
+                    <button class="size-btn" onclick="selectOption('p3', 'size', 'L', this)">L</button>
+                </div>
+                <div class="selector-label">اللون:</div>
+                <div class="options-group" id="colors-p3">
+                    <button class="color-btn" style="background: rgb(111, 136, 114);" onclick="selectOption('p3', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: black;" onclick="selectOption('p3', 'color', 'أزرق داكن', this)"></button>
+                    <button class="color-btn" style="background: #09264b;" onclick="selectOption('p3', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(235, 214, 148);" onclick="selectOption('p3', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(139, 139, 139);" onclick="selectOption('p3', 'color', 'أسود', this)"></button>
+
+                </div>
+                <button class="luxury-btn" onclick="addToCart('p3', 'سروال', '2000.00 DA', 'VM/IMG_20251108_113209.png')">شراء الآن</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-container">
+                <img src="VM/IMG_20251108_124432.png" class="slider-img active" alt="فاست خفيف 1">
+                <img src="VM/IMG_20251108_123921.png" class="slider-img" alt="فاست خفيف 2">
+            </div>
+            <div class="product-info">
+                <div class="product-title">فاست خفيف</div>
+                <div class="product-price">2000.00 DA</div>
+                <div class="selector-label">المقاس:</div>
+                <div class="options-group" id="sizes-p4">
+                    <button class="size-btn" onclick="selectOption('p4', 'size', 'S', this)">S</button>
+                    <button class="size-btn" onclick="selectOption('p4', 'size', 'M', this)">M</button>
+                    <button class="size-btn" onclick="selectOption('p4', 'size', 'L', this)">L</button>
+                </div>
+                <div class="selector-label">اللون:</div>
+                <div class="options-group" id="colors-p4">
+                    <button class="color-btn" style="background: white;" onclick="selectOption('p4', 'color', 'رمادي', this)"></button>
+                    <button class="color-btn" style="background: black;" onclick="selectOption('p4', 'color', 'أسود', this)"></button>
+                </div>
+                <button class="luxury-btn" onclick="addToCart('p4', 'فاست خفيف', '2000.00 DA', 'VM/IMG_20251108_124432.png')">شراء الآن</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="VM/IMG_20251110_114441.png" alt="تريكو">
+            <div class="product-info">
+                <div class="product-title">تريكو</div>
+                <div class="product-price">2000.00 DA</div>
+                <div class="selector-label">المقاس:</div>
+                <div class="options-group" id="sizes-p5">
+                    <button class="size-btn" onclick="selectOption('p5', 'size', 'S', this)">S</button>
+                    <button class="size-btn" onclick="selectOption('p5', 'size', 'M', this)">M</button>
+                    <button class="size-btn" onclick="selectOption('p5', 'size', 'L', this)">L</button>
+                </div>
+                <div class="selector-label">اللون:</div>
+                <div class="options-group" id="colors-p5">
+                    <button class="color-btn" style="background: white; border: 1px solid #ddd;" onclick="selectOption('p5', 'color', 'أبيض', this)"></button>
+                    <button class="color-btn" style="background: black;" onclick="selectOption('p5', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(189, 173, 120);" onclick="selectOption('p5', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(12, 7, 85);" onclick="selectOption('p5', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(118, 193, 216);" onclick="selectOption('p5', 'color', 'أسود', this)"></button>
+                </div>
+                <button class="luxury-btn" onclick="addToCart('p5', 'تريكو', '2000.00 DA', 'VM/IMG_20251110_114441.png')">شراء الآن</button>
+            </div>
+            </div>
+                <div class="product-card">
+            <img src="VM/IMG_20251110_120258.png" alt="تريكو سامبل">
+            <div class="product-info">
+                <div class="product-title">تريكو سامبل</div>
+                <div class="product-price">2000.00 DA</div>
+                <div class="selector-label">المقاس:</div>
+                <div class="options-group" id="sizes-p6">
+                    <button class="size-btn" onclick="selectOption('p6', 'size', 'S', this)">S</button>
+                    <button class="size-btn" onclick="selectOption('p6', 'size', 'M', this)">M</button>
+                    <button class="size-btn" onclick="selectOption('p6', 'size', 'L', this)">L</button>
+                </div>
+                <div class="selector-label">اللون:</div>
+                <div class="options-group" id="colors-p6">
+                    <button class="color-btn" style="background: rgb(8, 75, 17); border: 1px solid #ddd;" onclick="selectOption('p6', 'color', 'أبيض', this)"></button>
+                    <button class="color-btn" style="background: rgb(168, 136, 107);" onclick="selectOption('p6', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(12, 7, 85);" onclick="selectOption('p6', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: rgb(177, 159, 110);" onclick="selectOption('p6', 'color', 'أسود', this)"></button>
+                    <button class="color-btn" style="background: black;" onclick="selectOption('p6', 'color', 'أسود', this)"></button>
+                </div>
+                <button class="luxury-btn" onclick="addToCart('p6', 'تريكو سامبل', '2000.00 DA', 'VM/IMG_20251110_120258.png')">شراء الآن</button>
+            </div>
+        </div>
+        
+    </div>
+    <div class="cart-footer">
+        <a href="الطلبات.html" style="background: #292447; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
             الذهاب إلى سلة المشتريات 🛍️
         </a>
     </div>
 
     <script>
-        // كائن لتخزين الاختيارات
         let currentSelections = {};
 
         function selectOption(productId, type, value, element) {
             if (!currentSelections[productId]) currentSelections[productId] = {};
             currentSelections[productId][type] = value;
 
-            // تحديث شكل الأزرار
             const container = element.parentElement;
             const buttons = container.querySelectorAll('button');
             buttons.forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
         }
 
-function addToCart(productId, name, price, image) {
-    const selection = currentSelections[productId];
+        function addToCart(productId, name, price, image) {
+            const selection = currentSelections[productId];
 
-    // بدلاً من alert المتصفح، سنستخدم دالة إشعار الموقع
-    if (!selection || !selection.size || !selection.color) {
-        showToast("⚠️ يرجى اختيار المقاس واللون أولاً!", "warning");
-        return;
-    }
+            if (!selection || !selection.size || !selection.color) {
+                showToast("⚠️ يرجى اختيار المقاس واللون أولاً!", "warning");
+                return;
+            }
 
-    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
-    const existingItem = cart.find(item => 
-        item.name === name && item.size === selection.size && item.color === selection.color
-    );
+            let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+            const existingItem = cart.find(item => 
+                item.name === name && item.size === selection.size && item.color === selection.color
+            );
 
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            name: name, price: price, image: image,
-            size: selection.size, color: selection.color, quantity: 1
-        });
-    }
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name, price: price, image: image,
+                    size: selection.size, color: selection.color, quantity: 1
+                });
+            }
 
-    
-    localStorage.setItem('myCart', JSON.stringify(cart));
-    showToast(`✅ تمت إضافة ${name} بنجاح`, "success");
-}
+            localStorage.setItem('myCart', JSON.stringify(cart));
+            showToast(`✅ تمت إضافة ${name} بنجاح`, "success");
+        }
+
 function showToast(message, type) {
     const toast = document.getElementById("toast");
     toast.innerText = message;
     
-    // تغيير الألوان بناءً على النوع
+    // الألوان
     if (type === "warning") {
-        toast.style.backgroundColor = "#f39c12"; // لون برتقالي للتحذير
+        toast.style.backgroundColor = "#f39c12";
         toast.style.color = "#fff";
     } else {
-        toast.style.backgroundColor = "#292447"; // لونك الأساسي للنجاح
+        toast.style.backgroundColor = "#292447";
         toast.style.color = "#d6c41f";
     }
 
     toast.className = "show";
     
-    // إخفاء الإشعار تلقائياً بعد 3 ثوانٍ
-    setTimeout(function() { 
+    // تقليل الوقت إلى 2 ثانية بدلاً من 3 ليكون أسرع
+    let toastTimeout = setTimeout(function() { 
         toast.className = toast.className.replace("show", ""); 
-    }, 3000);
+    }, 2000);
+
+    // إضافة ميزة: إخفاء الإشعار فوراً إذا ضغط الزبون عليه
+    toast.onclick = function() {
+        clearTimeout(toastTimeout);
+        toast.className = toast.className.replace("show", "");
+    };
 }
+
+        function startImageSliders() {
+            const sliders = document.querySelectorAll('.image-container');
+            sliders.forEach(slider => {
+                const images = slider.querySelectorAll('.slider-img');
+                if (images.length <= 1) return;
+
+                let currentIndex = 0;
+                setInterval(() => {
+                    images[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add('active');
+                }, 3000);
+            });
+        }
+
+        window.addEventListener('load', startImageSliders);
     </script>
+<a href="الطلبات.html" class="floating-cart" title="ذهاب إلى السلة">
+    🛒
+</a>
 </body>
 </html>
