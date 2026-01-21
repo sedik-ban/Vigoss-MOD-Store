@@ -1,0 +1,21 @@
+{
+  "name": "VM Store - Vigoss MOD",
+  "short_name": "VM Store",
+  "description": "أحدث تشكيلة ملابس شبابية في الجزائر",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#3ca2fa",
+  "theme_color": "#292447",
+  "icons": [
+    {
+      "src": "VM/IMG-20251123-WA0007.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "VM/IMG-20251123-WA0007.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
